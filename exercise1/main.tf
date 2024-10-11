@@ -28,15 +28,15 @@ module "VPC" {
 
 module "NAT" {
   source                  = "./modules/NAT"
-  public_subnet_id        = module.vpc.public_subnet_id
+  public_subnet_id        = module.VPC.public_subnet_id
 
 }
 
 module "Route_Table" {
   source                  = "./modules/Route_Table"
-  vpc_id                  = module.vpc.vpc_id
-  gateway_id              = module.vpc.internet_gateway_id
-  public_subnet_id        = module.vpc.public_subnet_id
-  nat_gateway_id          = module.nat.nat_gateway_id
-  private_subnet_id       = module.vpc.private_subnet_id  
+  vpc_id                  = module.VPC.vpc_id
+  gateway_id              = module.VPC.internet_gateway_id
+  public_subnet_id        = module.VPC.public_subnet_id
+  nat_gateway_id          = module.NAT.nat_gateway_id
+  private_subnet_id       = module.VPC.private_subnet_id  
 }

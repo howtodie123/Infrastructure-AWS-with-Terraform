@@ -13,7 +13,7 @@ provider "aws" {
   secret_key = ""
 }
 
-# resource "aws_instance" "Group6" {
+# resource "aws_instance" "Group7" {
 #   ami = "ami-005fc0f236362e99f" # this is the ami id for the ubuntu 20.04
 #   instance_type = "t2.micro" # this is the instance type
 # }
@@ -43,17 +43,17 @@ module "Route_Table" {
 
 module "security_group" {
   source                  = "./modules/Security_Group"
-  vpc_id                  = module.vpc.vpc_id
+  vpc_id                  = module.VPC.vpc_id
   allowed_ip              = "0.0.0.0/0" 
 }
 
 
 module "ec2" {
   source                  = "./modules/EC2"
-  ami                     = module.ec2.ami
-  instance_type           = module.ec2.instance_type
-  public_subnet_id        = module.vpc.public_subnet_id
-  private_subnet_id       = module.vpc.private_subnet_id
-  public_security_group   = module.security_groups.public_security_group_id
-  private_security_group  = module.security_groups.private_security_group_id
+  ami                     = "ami-005fc0f236362e99f"
+  instance_type           = "t2.micro"
+  public_subnet_id        = module.VPC.public_subnet_id
+  private_subnet_id       = module.VPC.private_subnet_id
+  public_security_group   = module.security_group.public_security_group_id
+  private_security_group  = module.security_group.private_security_group_id
 }

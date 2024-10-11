@@ -7,6 +7,7 @@ resource "aws_instance" "public" {
   tags = {
     Name = "Public Instance Group 7"
   }
+  depends_on = [ var.private_subnet_id, var.private_security_group ]
 }
 
 resource "aws_instance" "private" {
@@ -18,6 +19,7 @@ resource "aws_instance" "private" {
   tags = {
     Name = "Private Instance Group 7"
   }
+  depends_on = [ var.private_subnet_id, var.private_security_group ]
 }
 
 

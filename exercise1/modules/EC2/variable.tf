@@ -13,6 +13,7 @@ variable "instance_type" {
 variable "public_subnet_id" {
     type        = string
     description = "The ID of the public subnet"
+    
 }
 
 variable "public_security_group" {

@@ -18,10 +18,25 @@ provider "aws" {
 #   instance_type = "t2.micro" # this is the instance type
 # }
 
-module "vpc" {
-  source                  = "./module/VPC"
+module "VPC" {
+  source                  = "./modules/VPC"
   vpc_cidr                = "10.0.0.0/16"
   public_subnet_cidr      = "10.0.1.0/24"
   private_subnet_cidr     = "10.0.2.0/24"
   availability_zone       = "us-east-1a"
+}
+
+module "NAT" {
+  source                  = "./modules/NAT"
+  public_subnet_id        = module.vpc.public_subnet_id
+
+}
+
+module "Route_Table" {
+  source                  = "./modules/Route_Table"
+  vpc_id                  = module.vpc.vpc_id
+  gateway_id              = module.vpc.internet_gateway_id
+  public_subnet_id        = module.vpc.public_subnet_id
+  nat_gateway_id          = module.nat.nat_gateway_id
+  private_subnet_id       = module.vpc.private_subnet_id  
 }

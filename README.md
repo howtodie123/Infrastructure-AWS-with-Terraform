@@ -22,6 +22,9 @@ terraform apply
 # Destroy the Terraform-managed infrastructure
 terraform destroy
 
+# Read an output from a state file
+terraform output
+
 # Apply the changes without prompting for confirmation
 terraform apply --auto-approve
 

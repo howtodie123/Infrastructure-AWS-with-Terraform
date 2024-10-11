@@ -8,7 +8,7 @@ resource "aws_nat_gateway" "nat_gateway" {
   subnet_id = var.public_subnet_id
 
   tags = {
-    Name = "NAT Gateway Group 6"
+    Name = "NAT Gateway Group 7"
   }
 }
 

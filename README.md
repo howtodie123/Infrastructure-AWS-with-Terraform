@@ -1,7 +1,12 @@
 ### LAB for TERRAFORM
 This is repo for learning Terraform in University of Information Technology - VNUHCM
 
-### Group 6
+### Group 7
+## Member
+
++ Nguyen Le Tien Phat  21522446
++ Ngo Vu Minh Dat      2152
++ Do Phuc Kien         21522243
 
 ### Using Terraform with cli 
 Here are some basic Terraform commands:

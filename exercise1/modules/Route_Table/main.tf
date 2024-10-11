@@ -3,7 +3,7 @@ resource "aws_route_table" "public_route_table" {
     vpc_id = var.vpc_id  # ID of the VPC
 
     tags = {
-        Name = "Public Route Table Group 6"
+        Name = "Public Route Table Group 7"
     }
 }
 
@@ -25,7 +25,7 @@ resource "aws_route_table" "private_route_table" {
     vpc_id = var.vpc_id  # ID of the VPC
 
     tags = {
-        Name = "Private Route Table Group 6"
+        Name = "Private Route Table Group 7"
     }
 }
 

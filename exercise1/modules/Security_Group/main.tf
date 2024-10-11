@@ -18,14 +18,14 @@ resource "aws_security_group" "public" {
   }
 
   tags = {
-    Name = "Group 6: Public Security Group EC2" 
+    Name = "Group 7: Public Security Group EC2" 
   }
 }
 
 resource "aws_security_group" "private" {
   vpc_id = var.vpc_id
   description = "Allow connections from Public EC2 instance"
-  
+
   ingress {
     from_port       = 22
     to_port         = 22
@@ -41,6 +41,6 @@ resource "aws_security_group" "private" {
   }
 
   tags = {
-    Name = "Group 6: Private Security Group EC2"
+    Name = "Group 7: Private Security Group EC2"
   }
 }

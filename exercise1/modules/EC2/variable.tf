@@ -15,14 +15,14 @@ variable "public_subnet_id" {
     description = "The ID of the public subnet"
 }
 
-variable "private_subnet_id" {
-    type        = string
-    description = "The ID of the private subnet"
-}
-
 variable "public_security_group" {
     type        = string
     description = "The ID of the public security group"
+}
+
+variable "private_subnet_id" {
+    type        = string
+    description = "The ID of the private subnet"
 }
 
 variable "private_security_group" {

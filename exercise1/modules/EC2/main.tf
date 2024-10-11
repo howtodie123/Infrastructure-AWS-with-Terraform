@@ -14,7 +14,7 @@ resource "aws_instance" "private" {
   instance_type = var.instance_type
   subnet_id = var.private_subnet_id
   security_groups = [var.private_security_group]
-
+  
   tags = {
     Name = "Private Instance Group 7"
   }

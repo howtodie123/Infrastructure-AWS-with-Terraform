@@ -1,5 +1,3 @@
-
-
 output "access_key" {
   sensitive = true
   value = ""

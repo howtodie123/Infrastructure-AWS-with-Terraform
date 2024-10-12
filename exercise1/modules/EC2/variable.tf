@@ -1,7 +1,7 @@
 variable "ami" {
     type        = string
     description = "The ID of the AMI to use for the instance"
-    default     = "ami-005fc0f236362e99f"
+    default     = "ami-0866a3c8686eaeeba"
 }
 
 variable "instance_type" {

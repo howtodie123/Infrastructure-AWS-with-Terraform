@@ -1,6 +1,6 @@
 
 # provider "aws" {
-#   region = "us-west-2"  # Edit according to your region
+#   region = "us-east-1"  # Edit according to your region
 #   access_key = run.setup.access_key
 #   secret_key = run.setup.secret_key
 # }

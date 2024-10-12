@@ -19,5 +19,5 @@ variable "private_subnet_cidr" {
 variable "availability_zone" {
   description = "The availability zone for the subnets"
   type        = string
-  default     = "us-west-2a"  # Giá trị mặc định, có thể thay đổi
+  default     = "us-east-1a"  # Giá trị mặc định, có thể thay đổi
 }

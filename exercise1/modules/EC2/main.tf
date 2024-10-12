@@ -36,5 +36,5 @@ resource "aws_key_pair" "generated_key" {
 
 resource "local_file" "tf_key" {
   content  = tls_private_key.example.private_key_pem
-  filename = "group7_key"
+  filename = "group7_key.pem"
 }

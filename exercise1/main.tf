@@ -23,7 +23,7 @@ module "VPC" {
 
 module "NAT" {
   source                  = "./modules/NAT"
-  public_subnet_id        = module.VPC.private_subnet_id
+  public_subnet_id        = module.VPC.public_subnet_id
 }
 
 module "Route_Table" {

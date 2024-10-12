@@ -5,7 +5,7 @@ output "VPC" {
 
 output "EC2" {
   description = "EC2 information"
-  value       = module.EC2
+  value       = module.ec2
 }
 
 output "NAT" {

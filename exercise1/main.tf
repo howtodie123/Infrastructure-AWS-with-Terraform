@@ -46,6 +46,7 @@ module "ec2" {
   source                  = "./modules/EC2"
   ami                     = "ami-0866a3c8686eaeeba"
   instance_type           = "t2.micro"
+  key_name                = "mykey"
   public_subnet_id        = module.VPC.public_subnet_id
   private_subnet_id       = module.VPC.private_subnet_id
   public_security_group   = module.security_group.public_security_group_id

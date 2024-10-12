@@ -30,3 +30,8 @@ variable "private_security_group" {
     type        = string
     description = "The ID of the private security group"
 }
+
+variable "key_name" {
+    type        = string
+    description = "The name of the key pair to use for the instance"
+}

@@ -8,15 +8,15 @@ output "route_table_route_private" {
     value       = aws_route_table.private_route_table.route
 }
 
-output "aws_route_public" {
-    description = "The public route"
-    value       = aws_route.public_internet_access.id
-}
+# output "aws_route_public" {
+#     description = "The public route"
+#     value       = aws_route.public_internet_access.id
+# }
 
-output "aws_route_private" {
-    description = "The private route"
-    value       = aws_route.private_nat_gateway.id
-}
+# output "aws_route_private" {
+#     description = "The private route"
+#     value       = aws_route.private_nat_gateway.id
+# }
 
 output "route_table_association_public" {
     description = "The association of the Public Route Table"

@@ -35,11 +35,11 @@ module "Route_Table" {
   private_subnet_id       = module.VPC.private_subnet_id  
 }
 
-# module "security_group" {
-#   source                  = "./modules/Security_Group"
-#   vpc_id                  = module.VPC.vpc_id
-#   allowed_ip              = "0.0.0.0/0" 
-# }
+module "security_group" {
+  source                  = "./modules/Security_Group"
+  vpc_id                  = module.VPC.vpc_id
+  allowed_ip              = "0.0.0.0/0" 
+}
 
 
 # module "ec2" {

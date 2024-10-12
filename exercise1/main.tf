@@ -9,14 +9,9 @@ terraform {
 
 provider "aws" {
   region = "us-east-1" 
-  access_key = ""
-  secret_key = ""
+  access_key = local.access_key
+  secret_key = local.secret_key
 }
-
-# resource "aws_instance" "Group7" {
-#   ami = "ami-005fc0f236362e99f" # this is the ami id for the ubuntu 20.04
-#   instance_type = "t2.micro" # this is the instance type
-# }
 
 module "VPC" {
   source                  = "./modules/VPC"
@@ -25,17 +20,7 @@ module "VPC" {
   private_subnet_cidr     = var.private_subnet_cidr #"10.0.2.0/24"
   availability_zone       = var.availability_zone #"us-east-1a"
 }
-# resource "aws_vpc" "main_vpc" {
-#   cidr_block = var.vpc_cidr
-#   enable_dns_support = true
-#   enable_dns_hostnames = true
-#   instance_tenancy     = "default"
 
-#   tags = {
-#     Name = "VPC group 7"
-#     Environment = "test"
-#   }
-# }
 # module "NAT" {
 #   source                  = "./modules/NAT"
 #   public_subnet_id        = module.VPC.public_subnet_id

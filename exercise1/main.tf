@@ -21,11 +21,10 @@ module "VPC" {
   availability_zone       = var.availability_zone #"us-east-1a"
 }
 
-# module "NAT" {
-#   source                  = "./modules/NAT"
-#   public_subnet_id        = module.VPC.public_subnet_id
-
-# }
+module "NAT" {
+  source                  = "./modules/NAT"
+  public_subnet_id        = module.VPC.public_subnet_id
+}
 
 # module "Route_Table" {
 #   source                  = "./modules/Route_Table"

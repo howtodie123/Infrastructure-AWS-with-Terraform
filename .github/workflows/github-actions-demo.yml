@@ -21,7 +21,7 @@ jobs:
         id: checkov
         uses: bridgecrewio/checkov-action@master
         with:
-          directory: exercise1
+          directory: exercise1  # Specify the directory where your code is located
           framework: terraform
         
       - name: Configure AWS credentials
@@ -29,7 +29,20 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
+          aws-region: ${{ secrets.AWS_REGION }}
+# Job 2: Terraform Initialization and Plan
+terraform:
+    runs-on: ubuntu-latest
+    needs: checkov  # run Terraform only job checkov successfully completes
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v1
@@ -47,7 +60,7 @@ jobs:
       - name: Validate Terraform changes
         working-directory: exercise1
         run: terraform validate
-
+        
       - name: Clean up
         working-directory: exercise1
-        run: rm tfplan 
+        run: rm tfplan

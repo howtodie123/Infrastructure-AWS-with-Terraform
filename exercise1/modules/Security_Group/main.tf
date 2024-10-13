@@ -4,6 +4,7 @@ resource "aws_security_group" "public" {
 
   # Allow SSH from a specific IP 
   ingress {
+    description = "Allow SSH from a specific IP"
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
@@ -11,6 +12,7 @@ resource "aws_security_group" "public" {
   }
   # Allow all outbound traffic (outbound)
   egress {
+    description = "Allow all outbound traffic (outbound)"
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
@@ -27,6 +29,7 @@ resource "aws_security_group" "private" {
   description = "Allow connections from Public EC2 instance"
 
   ingress {
+    description = "Allow SSH from a specific IP"
     from_port       = 22
     to_port         = 22
     protocol        = "tcp"
@@ -34,6 +37,7 @@ resource "aws_security_group" "private" {
   }
   
   ingress {
+    description = "Allow all port from a specific IP"
     from_port       = 0
     to_port         = 65535
     protocol        = "0"

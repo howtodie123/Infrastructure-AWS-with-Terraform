@@ -47,9 +47,9 @@ jobs:
         working-directory: exercise1
         run: terraform init
 
-      - name: Plan Terraform changes
-        working-directory: exercise1
-        run: terraform plan -out=tfplan
+      # - name: Plan Terraform changes
+      #   working-directory: exercise1
+      #   run: terraform plan -out=tfplan
       
       - name: Validate Terraform changes
         working-directory: exercise1
@@ -58,7 +58,7 @@ jobs:
       - name: apply Terraform changes
         working-directory: exercise1
         run: terraform apply -auto-approve
-        
+
       - name: Clean up
         working-directory: exercise1
         run: rm tfplan

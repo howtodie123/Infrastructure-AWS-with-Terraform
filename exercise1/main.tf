@@ -37,15 +37,15 @@ module "Route_Table" {
 
 module "IAM" {
   source                  = "./modules/IAM"
-  arn_instance            = "arn:aws:ec2:us-east-1:654654193705:instance/*"  
-  arn_user                = "arn:aws:iam::654654193705:user/cloud_user"
+  arn_instance            = var.ARN_instance 
+  arn_user                = var.ARN_user
 }
 
 module "ec2" {
   source                  = "./modules/EC2"
-  ami                     = "ami-0866a3c8686eaeeba"
-  instance_type           = "t2.micro"
-  key_name                = "mykey"
+  ami                     = var.ami_id
+  instance_type           = var.instance_type
+  key_name                = var.key_name
   role_name               = module.IAM.role_name
   public_subnet_id        = module.VPC.public_subnet_id
   private_subnet_id       = module.VPC.private_subnet_id
@@ -56,7 +56,7 @@ module "ec2" {
 module "security_group" {
   source                  = "./modules/Security_Group"
   vpc_id                  = module.VPC.vpc_id
-  allowed_ip              = "112.0.0.0/8" # specify your ip address
+  allowed_ip              = var.allowed_ip # specify your ip address
   public_subnet_id        = module.VPC.public_subnet_id
   private_subnet_id       = module.VPC.private_subnet_id
 }

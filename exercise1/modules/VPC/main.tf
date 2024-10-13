@@ -79,20 +79,20 @@ resource "aws_iam_role" "vpc_flow_logs_role" {
   })
 }
 
-resource "aws_iam_policy_attachment" "vpc_flow_logs_attachment" {
-  name       = "vpc-flow-logs-attachment"
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AWS_VPC_FlowLogs"
-  roles      = [aws_iam_role.vpc_flow_logs_role.name]
-}
+# resource "aws_iam_policy_attachment" "vpc_flow_logs_attachment" {
+#   name       = "vpc-flow-logs-attachment"
+#   policy_arn = "arn:aws:iam::aws:policy/service-role/AWS_VPC_FlowLogs"
+#   roles      = [aws_iam_role.vpc_flow_logs_role.name]
+# }
 
-resource "aws_cloudwatch_log_group" "vpc_flow_logs" {
-  name              = "vpc-flow-logs"
-  retention_in_days = 365  # at least 365
-}
+# resource "aws_cloudwatch_log_group" "vpc_flow_logs" {
+#   name              = "vpc-flow-logs"
+#   retention_in_days = 365  # at least 365
+# }
 
-resource "aws_flow_log" "vpc_flow_log" {
-  log_destination = aws_cloudwatch_log_group.vpc_flow_logs.arn
-  vpc_id         = aws_vpc.main_vpc.id
-  traffic_type   = "ALL"  # Có thể là "ACCEPT", "REJECT", hoặc "ALL"
-  iam_role_arn   = aws_iam_role.vpc_flow_logs_role.arn
-}
+# resource "aws_flow_log" "vpc_flow_log" {
+#   log_destination = aws_cloudwatch_log_group.vpc_flow_logs.arn
+#   vpc_id         = aws_vpc.main_vpc.id
+#   traffic_type   = "ALL"  # Có thể là "ACCEPT", "REJECT", hoặc "ALL"
+#   iam_role_arn   = aws_iam_role.vpc_flow_logs_role.arn
+# }

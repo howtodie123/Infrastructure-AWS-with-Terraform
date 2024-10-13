@@ -96,3 +96,4 @@ resource "aws_iam_role" "vpc_flow_logs_role" {
 #   traffic_type   = "ALL"  # Có thể là "ACCEPT", "REJECT", hoặc "ALL"
 #   iam_role_arn   = aws_iam_role.vpc_flow_logs_role.arn
 # }
+

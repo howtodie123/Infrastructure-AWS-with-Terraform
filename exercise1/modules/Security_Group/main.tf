@@ -64,13 +64,13 @@ resource "aws_security_group" "private" {
   }
 }
 
-resource "aws_network_interface" "public_interface" {
-  subnet_id = var.public_subnet_id
-  security_groups = [aws_security_group.public.id]
+# resource "aws_network_interface" "public_interface" {
+#   subnet_id = var.public_subnet_id
+#   security_groups = [aws_security_group.public.id]
 
-}
+# }
 
-resource "aws_network_interface" "private_interface" {
-  subnet_id = var.private_subnet_id
-  security_groups = [aws_security_group.private.id]
-}
+# resource "aws_network_interface" "private_interface" {
+#   subnet_id = var.private_subnet_id
+#   security_groups = [aws_security_group.private.id]
+# }

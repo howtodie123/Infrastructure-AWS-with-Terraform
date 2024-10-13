@@ -46,25 +46,8 @@ resource "aws_subnet" "private_subnet" {
 
 resource "aws_default_security_group" "default_security_group" {
   vpc_id = aws_vpc.main_vpc.id
-
 }
 
-resource "aws_iam_role" "vpc_flow_logs_role" {
-  name = "vpc-flow-logs-role"
-
-  assume_role_policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Effect = "Allow"
-        Principal = {
-          Service = "vpc-flow-logs.amazonaws.com"
-        }
-        Action = "sts:AssumeRole"
-      },
-    ]
-  })
-}
 # resource "aws_flow_log" "vpc_flow_log" {
 #   vpc_id = aws_vpc.main_vpc.id
 #   log_destination = aws_cloudwatch_log_group.vpc_log_group.arn

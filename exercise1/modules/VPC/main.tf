@@ -46,19 +46,6 @@ resource "aws_subnet" "private_subnet" {
 resource "aws_default_security_group" "default_security_group" {
   vpc_id = aws_vpc.main_vpc.id
 
-  ingress {
-    protocol  = "-1"
-    self      = true
-    from_port = 0
-    to_port   = 0
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
 }
 
 
@@ -78,40 +65,21 @@ resource "aws_iam_role" "vpc_flow_logs_role" {
     ]
   })
 }
-
-# resource "aws_iam_policy_attachment" "vpc_flow_logs_attachment" {
-#   name       = "vpc-flow-logs-attachment"
-#   policy_arn = "arn:aws:iam::aws:policy/service-role/AWS_VPC_FlowLogs"
-#   roles      = [aws_iam_role.vpc_flow_logs_role.name]
-# }
-
-# resource "aws_cloudwatch_log_group" "vpc_flow_logs" {
-#   name              = "vpc-flow-logs"
-#   retention_in_days = 365  # at least 365
-# }
-
 # resource "aws_flow_log" "vpc_flow_log" {
-#   log_destination = aws_cloudwatch_log_group.vpc_flow_logs.arn
-#   vpc_id         = aws_vpc.main_vpc.id
-#   traffic_type   = "ALL"  # Có thể là "ACCEPT", "REJECT", hoặc "ALL"
-#   iam_role_arn   = aws_iam_role.vpc_flow_logs_role.arn
+#   vpc_id = aws_vpc.main_vpc.id
+#   log_destination = aws_cloudwatch_log_group.vpc_log_group.arn
+#   traffic_type = "ALL"
+
+#   tags = {
+#     Name = "VPC Flow Log"
+#   }
 # }
 
-resource "aws_flow_log" "vpc_flow_log" {
-  vpc_id = aws_vpc.main_vpc.id
-  log_destination = aws_cloudwatch_log_group.vpc_log_group.arn
-  traffic_type = "ALL"
+# resource "aws_cloudwatch_log_group" "vpc_log_group" {
+#   name = "vpc-flow-logs"
+#   retention_in_days = 366
 
-  tags = {
-    Name = "VPC Flow Log"
-  }
-}
-
-resource "aws_cloudwatch_log_group" "vpc_log_group" {
-  name = "vpc-flow-logs"
-  retention_in_days = 366
-
-  tags = {
-    Name = "VPC Flow Logs Group"
-  }
-}
+#   tags = {
+#     Name = "VPC Flow Logs Group"
+#   }
+# }

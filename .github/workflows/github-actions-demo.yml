@@ -1,4 +1,4 @@
-name: Checkov
+name: CI Workflow
 
 on:
   push:
@@ -6,9 +6,9 @@ on:
       - main
 
 jobs:
-  build:
+  # Job 1: Checkov Security Scan
+  checkov:
     runs-on: ubuntu-latest
-    
     steps:
       - uses: actions/checkout@v2
       
@@ -17,19 +17,12 @@ jobs:
         with:
           python-version: 3.8
           
-      - name: Test with Checkov
+      - name: Run Checkov Security Scan
         id: checkov
         uses: bridgecrewio/checkov-action@master
         with:
           directory: exercise1  # Specify the directory where your code is located
           framework: terraform
-        
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
 # Job 2: Terraform Initialization and Plan
 terraform:
     runs-on: ubuntu-latest

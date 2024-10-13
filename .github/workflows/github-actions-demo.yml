@@ -55,6 +55,10 @@ jobs:
         working-directory: exercise1
         run: terraform validate
         
+      - name: apply Terraform changes
+        working-directory: exercise1
+        run: terraform apply -auto-approve
+        
       - name: Clean up
         working-directory: exercise1
         run: rm tfplan

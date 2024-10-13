@@ -56,7 +56,7 @@ module "ec2" {
 module "security_group" {
   source                  = "./modules/Security_Group"
   vpc_id                  = module.VPC.vpc_id
-  allowed_ip              = var.allowed_ip # specify your ip address
+  allowed_ip              = "112.197.0.0/16" # specify your ip address
   public_subnet_id        = module.VPC.public_subnet_id
   private_subnet_id       = module.VPC.private_subnet_id
 }

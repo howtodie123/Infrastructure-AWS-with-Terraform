@@ -35,14 +35,6 @@ module "Route_Table" {
   private_subnet_id       = module.VPC.private_subnet_id  
 }
 
-module "security_group" {
-  source                  = "./modules/Security_Group"
-  vpc_id                  = module.VPC.vpc_id
-  allowed_ip              = "112.0.0.0/8" # specify your ip address
-  public_subnet_id        = module.VPC.public_subnet_id
-  private_subnet_id       = module.VPC.private_subnet_id
-}
-
 module "IAM" {
   source                  = "./modules/IAM"
   arn_instance            = "arn:aws:ec2:us-east-1:654654193705:instance/*"  
@@ -59,4 +51,12 @@ module "ec2" {
   private_subnet_id       = module.VPC.private_subnet_id
   public_security_group   = module.security_group.public_security_group_id
   private_security_group  = module.security_group.private_security_group_id
+}
+
+module "security_group" {
+  source                  = "./modules/Security_Group"
+  vpc_id                  = module.VPC.vpc_id
+  allowed_ip              = "112.0.0.0/8" # specify your ip address
+  public_subnet_id        = module.VPC.public_subnet_id
+  private_subnet_id       = module.VPC.private_subnet_id
 }

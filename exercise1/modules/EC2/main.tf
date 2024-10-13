@@ -12,9 +12,11 @@ resource "aws_instance" "public" {
   ami               = var.ami
   instance_type     = var.instance_type
   subnet_id         = var.public_subnet_id
-  security_groups   = [var.public_security_group]
+  #security_groups   = [var.public_security_group]
+  vpc_security_group_ids = [var.public_security_group]
+
   # associate_public_ip_address = true
-  depends_on        = [var.public_security_group]
+  #depends_on        = [var.public_security_group]
   # iam instance profile
   iam_instance_profile = var.role_name
   
@@ -52,8 +54,8 @@ resource "aws_instance" "public" {
     ami = var.ami
     instance_type = var.instance_type
     subnet_id = var.private_subnet_id
-    security_groups = [var.private_security_group]
-
+    #security_groups = [var.private_security_group]
+    vpc_security_group_ids = [var.private_security_group]
 
     # ssh key pair
     key_name = aws_key_pair.generated_key.key_name

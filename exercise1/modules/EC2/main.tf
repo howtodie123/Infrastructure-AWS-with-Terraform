@@ -23,7 +23,7 @@ resource "aws_instance" "public" {
   ami               = var.ami
   instance_type     = var.instance_type
   subnet_id         = var.public_subnet_id
-  security_groups   = [var.public_security_group]
+  security_groups   = [module.Security_Group.public_security_group_id]
   #vpc_security_group_ids = [var.public_security_group]
 
   # associate_public_ip_address = true

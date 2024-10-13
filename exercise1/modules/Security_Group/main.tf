@@ -1,15 +1,3 @@
-resource "aws_network_interface" "test" {
-  subnet_id       = "aws_subnet.public_a.id"
-  security_groups = [aws_security_group.public.id]
-}
-
-
-resource "aws_instance" "test" {
-  ami           = "data.aws_ami.ubuntu.id"
-  instance_type = "t3.micro"
-  security_groups = [aws_security_group.public.id]
-}
-
 resource "aws_security_group" "public" {
   vpc_id = var.vpc_id
   description = "Allow SSH access from a specific IP"

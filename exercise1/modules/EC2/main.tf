@@ -14,6 +14,11 @@ resource "aws_network_interface" "public_interface" {
 
 }
 
+resource "aws_network_interface" "private_interface" {
+  subnet_id = var.private_subnet_id
+  security_groups = [var.private_security_group]
+}
+
 resource "aws_instance" "public" {
   ami               = var.ami
   instance_type     = var.instance_type

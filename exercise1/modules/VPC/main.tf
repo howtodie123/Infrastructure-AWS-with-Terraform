@@ -61,24 +61,8 @@ resource "aws_flow_log" "vpc_flow_log" {
 resource "aws_kms_key" "cloudwatch_kms_key" {
   description = "KMS key for CloudWatch Log Group encryption"
   enable_key_rotation = true
-
-  tags = {
-    Name = "CloudWatch KMS Key"
-  }
-}
-
-resource "aws_cloudwatch_log_group" "vpc_log_group" {
-  name = "vpc-flow-logs"
-  retention_in_days = 366
-  kms_key_id        = aws_kms_key.cloudwatch_kms_key.arn 
-  tags = {
-    Name = "VPC Flow Logs Group"
-  }
-}
-
-resource "aws_kms_key" "example" {
-  description = "KMS key for example"
-  policy      = <<POLICY
+  
+   policy      = <<POLICY
   {
     "Version": "2012-10-17",
     "Id": "default",
@@ -95,4 +79,19 @@ resource "aws_kms_key" "example" {
     ]
   }
 POLICY
+
+  tags = {
+    Name = "CloudWatch KMS Key"
+  }
 }
+
+resource "aws_cloudwatch_log_group" "vpc_log_group" {
+  name = "vpc-flow-logs"
+  retention_in_days = 366
+  kms_key_id        = aws_kms_key.cloudwatch_kms_key.arn 
+  tags = {
+    Name = "VPC Flow Logs Group"
+  }
+}
+
+

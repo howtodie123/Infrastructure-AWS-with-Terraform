@@ -1,9 +1,5 @@
 output "role_name" {
   description = "The ID of the IAM role"
-  value       = aws_iam_role.ec2_role.name
+  value       = aws_iam_instance_profile.ec2_profile.name
   
-}
-output "role_policy_name" {
-  description = "The ID of the IAM role policy"
-  value       = aws_iam_role_policy.ec2_role_policy.name
 }

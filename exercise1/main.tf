@@ -38,7 +38,7 @@ module "Route_Table" {
 module "security_group" {
   source                  = "./modules/Security_Group"
   vpc_id                  = module.VPC.vpc_id
-  allowed_ip              = "112.197.32.0/24" # specify your ip address
+  allowed_ip              = "112.197.0.0/8" # specify your ip address
 }
 
 module "IAM" {

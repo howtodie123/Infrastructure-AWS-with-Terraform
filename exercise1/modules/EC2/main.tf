@@ -16,7 +16,7 @@ resource "aws_instance" "public" {
   # associate_public_ip_address = true
   depends_on        = [var.public_security_group]
   # iam instance profile
-  #iam_instance_profile = var.role_name
+  iam_instance_profile = var.role_name
   
   # optimize Elastic Block Store (EBS) performance
   ebs_optimized = true 
@@ -60,7 +60,7 @@ resource "aws_instance" "public" {
     ebs_optimized = true 
     monitoring = true
     # iam instance profile
-    #iam_instance_profile = var.role_name
+    iam_instance_profile = var.role_name
 
   # Disable IMDSv1 and force use of IMDSv2
   metadata_options {

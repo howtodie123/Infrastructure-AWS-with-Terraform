@@ -38,11 +38,13 @@ module "Route_Table" {
 module "security_group" {
   source                  = "./modules/Security_Group"
   vpc_id                  = module.VPC.vpc_id
-  allowed_ip              = "112.197.0.0/8" # specify your ip address
+  allowed_ip              = "0.0.0.0/0" # specify your ip address
 }
 
 module "IAM" {
   source                  = "./modules/IAM"
+  arn_instance            = "arn:aws:ec2:us-east-1:654654193705:instance/*"  
+  arn_user                = "arn:aws:iam::654654193705:user/cloud_user"
 }
 
 module "ec2" {

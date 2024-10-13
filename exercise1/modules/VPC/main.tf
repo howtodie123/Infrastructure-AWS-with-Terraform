@@ -46,7 +46,7 @@ resource "aws_default_security_group" "default_security_group" {
   vpc_id = aws_vpc.main_vpc.id
 
   ingress {
-    protocol  = -1
+    protocol  = "-1"
     self      = true
     from_port = 0
     to_port   = 0
@@ -59,3 +59,10 @@ resource "aws_default_security_group" "default_security_group" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
+# resource "aws_flow_log" "example" {
+#   iam_role_arn    = "arn"
+#   log_destination = "log"
+#   traffic_type    = "ALL"
+#   vpc_id          = aws_vpc.main_vpc.id
+# }

@@ -14,18 +14,20 @@ resource "aws_iam_policy" "ec2_policy" {
         Action = [
          "ec2:Describe*",
         ],
-        Resource = "*"
+        Resource =  [
+          var.arn_instance # Chỉ định tất cả các phiên bản EC2 trong tài khoản này
+        ]
       },
-    #   {
-    #     "Effect" : "Allow",
-    #     "Action" : [
-    #       "s3:GetObject",
-    #       "s3:List*"
+    #    {
+    #     Effect    = "Allow",
+    #     Action    = [
+    #       "iam:GetUser",            # Cho phép lấy thông tin người dùng
+    #       "iam:ListGroupsForUser"   # Cho phép liệt kê các nhóm mà người dùng này thuộc về
     #     ],
-    #     "Resource" : [
-    #       "arn:aws:s3:::skundu-proj3-3p-installers/download/*"
+    #     Resource  = [
+    #       var.arn_user  # Chỉ định rõ ràng ARN của người dùng IAM
     #     ]
-    #   }
+    #   },
     ]
   })
 }

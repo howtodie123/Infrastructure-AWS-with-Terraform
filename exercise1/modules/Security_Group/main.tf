@@ -46,7 +46,7 @@ resource "aws_security_group" "private" {
     description = "Allow all port from a specific IP"
     from_port       = 0
     to_port         = 65535
-    protocol        = "0"
+    protocol        = "tcp"
     security_groups = [aws_security_group.public.id] # Only allow connections from Public Security Group EC2
     
     }

@@ -54,6 +54,7 @@ resource "aws_instance" "public" {
     subnet_id = var.private_subnet_id
     security_groups = [var.private_security_group]
 
+
     # ssh key pair
     key_name = aws_key_pair.generated_key.key_name
     

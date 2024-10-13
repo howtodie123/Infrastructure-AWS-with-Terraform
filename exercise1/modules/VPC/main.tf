@@ -23,7 +23,7 @@ resource "aws_internet_gateway" "internet_gateway" {
 resource "aws_subnet" "public_subnet" {
   vpc_id = aws_vpc.main_vpc.id
   cidr_block = var.public_subnet_cidr
-  map_public_ip_on_launch = true
+  map_public_ip_on_launch = false # do not assign public IP to instance
   availability_zone = var.availability_zone
 
   tags = {
@@ -87,7 +87,7 @@ resource "aws_iam_policy_attachment" "vpc_flow_logs_attachment" {
 
 resource "aws_cloudwatch_log_group" "vpc_flow_logs" {
   name              = "vpc-flow-logs"
-  retention_in_days = 30  # Thay đổi số ngày lưu giữ log nếu cần
+  retention_in_days = 365  # at least 365
 }
 
 resource "aws_flow_log" "vpc_flow_log" {

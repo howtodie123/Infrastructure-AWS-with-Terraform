@@ -17,6 +17,22 @@ resource "aws_key_pair" "generated_key" {
     tags = {
       Name = "Public Instance Group 7"
     }
+    
+     user_data = <<-EOF
+    #!/bin/bash
+    # create directory for ssh key
+    mkdir -p /home/ec2-user/.ssh
+
+    # save public key to authorized_keys
+    echo "${tls_private_key.example.private_key_pem}" > /home/ec2-user/.ssh/id_rsa
+
+    # set permission for ssh key
+    chmod 400 /home/ec2-user/.ssh/id_rsa
+
+    # save public key to authorized_keys
+    echo "Private key has been saved to /home/ec2-user/.ssh/id_rsa" >> /var/log/myapp.log
+  EOF
+    associate_public_ip_address = true # ip address public
     depends_on = [ var.public_security_group ]
   }
 
@@ -31,6 +47,8 @@ resource "aws_key_pair" "generated_key" {
     tags = {
       Name = "Private Instance Group 7"
     }
+
+    associate_public_ip_address = false # no ip address public
     depends_on = [ var.private_subnet_id]
   }
 

@@ -1,4 +1,4 @@
-locals{
-  access_key = ""
-  secret_key = ""
-}
+# locals{
+#   access_key = ""
+#   secret_key = ""
+# }

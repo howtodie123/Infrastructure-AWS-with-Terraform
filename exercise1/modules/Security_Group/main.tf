@@ -64,49 +64,13 @@ resource "aws_security_group" "private" {
   }
 }
 
-# # Make sure that the default security group in the VPC restricts all inbound and outbound traffic.
-# # By default, AWS allows all inbound and outbound traffic in the VPC's default security group,
-# # which violates the best practice of limiting nonessential traffic
-# resource "aws_security_group" "restricted_sg" {
-#   vpc_id = var.vpc_id
+resource "aws_network_interface" "public_interface" {
+  subnet_id = var.public_subnet_id
+  security_groups = [aws_security_group.public.id]
 
-#   ingress {
-#     from_port   = 0
-#     to_port     = 0
-#     protocol    = "-1"
-#     cidr_blocks = []
-#   }
+}
 
-#   egress {
-#     from_port   = 0
-#     to_port     = 0
-#     protocol    = "-1"
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
-
-#   tags = {
-#     Name = "restricted-security-group"
-#   }
-# }
-
-# resource "aws_default_security_group" "default" {
-#   vpc_id = var.vpc_id
-
-#   ingress {
-#     protocol   = "-1"
-#     from_port  = 0
-#     to_port    = 0
-#     cidr_blocks = []
-#   }
-
-#   egress {
-#     protocol   = "-1"
-#     from_port  = 0
-#     to_port    = 0
-#     cidr_blocks = []
-#   }
-
-#   lifecycle {
-#     ignore_changes = [ingress, egress]
-#   }
-# }
+resource "aws_network_interface" "private_interface" {
+  subnet_id = var.private_subnet_id
+  security_groups = [aws_security_group.private.id]
+}

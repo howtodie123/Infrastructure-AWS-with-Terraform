@@ -8,3 +8,12 @@ variable "vpc_id" {
     description = "The ID of the VPC where the security group will be created."
     type        = string
 }
+
+variable "public_subnet_id" {
+  description = "value of public subnet"
+  type = string
+}
+variable "private_subnet_id" {
+  description = "value of private subnet"
+  type = string
+}

@@ -43,11 +43,11 @@ resource "aws_subnet" "private_subnet" {
   }
 }
 
+
 resource "aws_default_security_group" "default_security_group" {
   vpc_id = aws_vpc.main_vpc.id
 
 }
-
 
 resource "aws_iam_role" "vpc_flow_logs_role" {
   name = "vpc-flow-logs-role"

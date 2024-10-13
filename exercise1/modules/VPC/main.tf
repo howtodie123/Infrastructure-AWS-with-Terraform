@@ -78,7 +78,7 @@ resource "aws_cloudwatch_log_group" "vpc_log_group" {
 
 resource "aws_kms_key" "example" {
   description = "KMS key for example"
-  policy      = jsonencode(
+  policy      = <<POLICY
   {
     "Version": "2012-10-17",
     "Id": "default",
@@ -94,5 +94,5 @@ resource "aws_kms_key" "example" {
       }
     ]
   }
-  )
+POLICY
 }

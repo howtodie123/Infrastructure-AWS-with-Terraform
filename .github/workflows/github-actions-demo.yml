@@ -8,7 +8,7 @@ on:
 jobs:
   # Job 1: Checkov Security Scan
   checkov:
-    runs-on: ubuntu-lastest
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v2
       
@@ -25,7 +25,7 @@ jobs:
           framework: terraform
 # Job 2: Terraform Initialization and Plan
   terraform:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     environment: AWS
     needs: checkov  # run Terraform only job checkov successfully completes
     steps:

@@ -63,23 +63,23 @@ resource "aws_kms_key" "cloudwatch_kms_key" {
   description = "KMS key for CloudWatch Log Group encryption"
   enable_key_rotation = true
   
-   policy      = <<POLICY
-  {
-    "Version": "2012-10-17",
-    "Id": "default",
-    "Statement": [
-      {
-        "Sid": "DefaultAllow",
-        "Effect": "Allow",
-        "Principal": {
-          "AWS": "arn:aws:iam::654654380717:root"
-        },
-        "Action": "kms:*",
-        "Resource": "*"
-      }
-    ]
-  }
-POLICY
+#    policy      = <<POLICY
+#   {
+#     "Version": "2012-10-17",
+#     "Id": "default",
+#     "Statement": [
+#       {
+#         "Sid": "DefaultAllow",
+#         "Effect": "Allow",
+#         "Principal": {
+#           "AWS": "arn:aws:iam::654654380717:root"
+#         },
+#         "Action": "kms:*",
+#         "Resource": "*"
+#       }
+#     ]
+#   }
+# POLICY
 
   tags = {
     Name = "CloudWatch KMS Key"

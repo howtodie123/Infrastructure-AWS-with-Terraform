@@ -97,3 +97,21 @@ resource "aws_iam_role" "vpc_flow_logs_role" {
 #   iam_role_arn   = aws_iam_role.vpc_flow_logs_role.arn
 # }
 
+resource "aws_flow_log" "vpc_flow_log" {
+  vpc_id = aws_vpc.main_vpc.id
+  log_destination = aws_cloudwatch_log_group.vpc_log_group.arn
+  traffic_type = "ALL"
+
+  tags = {
+    Name = "VPC Flow Log"
+  }
+}
+
+resource "aws_cloudwatch_log_group" "vpc_log_group" {
+  name = "vpc-flow-logs"
+  retention_in_days = 366
+
+  tags = {
+    Name = "VPC Flow Logs Group"
+  }
+}

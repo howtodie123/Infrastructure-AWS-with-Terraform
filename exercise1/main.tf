@@ -37,8 +37,8 @@ module "Route_Table" {
 
 module "IAM" {
   source                  = "./modules/IAM"
-  arn_instance            = var.ARN_instance 
-  arn_user                = var.ARN_user
+  arn_instance            = "arn:aws:ec2:us-east-1:654654380717:instance/*"#var.ARN_instance 
+  arn_user                = "arn:aws:iam::654654380717:user/cloud"#var.ARN_user
 }
 
 module "ec2" {

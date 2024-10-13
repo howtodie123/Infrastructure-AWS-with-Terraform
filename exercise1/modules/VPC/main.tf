@@ -48,21 +48,21 @@ resource "aws_default_security_group" "default_security_group" {
   vpc_id = aws_vpc.main_vpc.id
 }
 
-# resource "aws_flow_log" "vpc_flow_log" {
-#   vpc_id = aws_vpc.main_vpc.id
-#   log_destination = aws_cloudwatch_log_group.vpc_log_group.arn
-#   traffic_type = "ALL"
+resource "aws_flow_log" "vpc_flow_log" {
+  vpc_id = aws_vpc.main_vpc.id
+  log_destination = aws_cloudwatch_log_group.vpc_log_group.arn
+  traffic_type = "ALL"
 
-#   tags = {
-#     Name = "VPC Flow Log"
-#   }
-# }
+  tags = {
+    Name = "VPC Flow Log"
+  }
+}
 
-# resource "aws_cloudwatch_log_group" "vpc_log_group" {
-#   name = "vpc-flow-logs"
-#   retention_in_days = 366
+resource "aws_cloudwatch_log_group" "vpc_log_group" {
+  name = "vpc-flow-logs"
+  retention_in_days = 366
 
-#   tags = {
-#     Name = "VPC Flow Logs Group"
-#   }
-# }
+  tags = {
+    Name = "VPC Flow Logs Group"
+  }
+}

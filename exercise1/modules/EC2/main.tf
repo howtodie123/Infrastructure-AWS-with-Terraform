@@ -8,22 +8,11 @@ resource "aws_key_pair" "generated_key" {
   public_key = tls_private_key.example.public_key_openssh
 }
 
-resource "aws_network_interface" "public_interface" {
-  subnet_id = var.public_subnet_id
-  security_groups = [var.public_security_group]
-
-}
-
-resource "aws_network_interface" "private_interface" {
-  subnet_id = var.private_subnet_id
-  security_groups = [module.Security_Group.aws_security_group.private.id]
-}
-
 resource "aws_instance" "public" {
   ami               = var.ami
   instance_type     = var.instance_type
   subnet_id         = var.public_subnet_id
-  security_groups   = [module.Security_Group.public_security_group_id]
+  security_groups   = [var.public_security_group]
   #vpc_security_group_ids = [var.public_security_group]
 
   # associate_public_ip_address = true

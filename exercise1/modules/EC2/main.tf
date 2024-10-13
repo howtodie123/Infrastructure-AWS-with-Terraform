@@ -16,7 +16,7 @@ resource "aws_network_interface" "public_interface" {
 
 resource "aws_network_interface" "private_interface" {
   subnet_id = var.private_subnet_id
-  security_groups = [var.public_security_group]
+  security_groups = [module.Security_Group.aws_security_group.private.id]
 }
 
 resource "aws_instance" "public" {

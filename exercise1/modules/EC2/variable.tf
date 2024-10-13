@@ -35,3 +35,8 @@ variable "key_name" {
     type        = string
     description = "The name of the key pair to use for the instance"
 }
+
+variable "role_name" {
+    type        = string
+    description = "The name of the IAM role"
+}

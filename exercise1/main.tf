@@ -38,15 +38,19 @@ module "Route_Table" {
 module "security_group" {
   source                  = "./modules/Security_Group"
   vpc_id                  = module.VPC.vpc_id
-  allowed_ip              = "112.197.32.0/21" # specify your ip address
+  allowed_ip              = "112.197.32.0/24" # specify your ip address
 }
 
+module "IAM" {
+  source                  = "./modules/IAM"
+}
 
 module "ec2" {
   source                  = "./modules/EC2"
   ami                     = "ami-0866a3c8686eaeeba"
   instance_type           = "t2.micro"
   key_name                = "mykey"
+  role_name               = module.IAM.role_name
   public_subnet_id        = module.VPC.public_subnet_id
   private_subnet_id       = module.VPC.private_subnet_id
   public_security_group   = module.security_group.public_security_group_id

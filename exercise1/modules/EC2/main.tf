@@ -15,8 +15,12 @@ resource "aws_instance" "public" {
   security_groups   = [var.public_security_group]
   # associate_public_ip_address = true
   depends_on        = [var.public_security_group]
-
+  # iam instance profile
+  #iam_instance_profile = var.role_name
+  
+  # optimize Elastic Block Store (EBS) performance
   ebs_optimized = true 
+
   monitoring = true
 
   # Disable IMDSv1 and force use of IMDSv2
@@ -50,10 +54,13 @@ resource "aws_instance" "public" {
     subnet_id = var.private_subnet_id
     security_groups = [var.private_security_group]
 
+    # ssh key pair
     key_name = aws_key_pair.generated_key.key_name
     
     ebs_optimized = true 
     monitoring = true
+    # iam instance profile
+    #iam_instance_profile = var.role_name
 
   # Disable IMDSv1 and force use of IMDSv2
   metadata_options {
@@ -80,3 +87,4 @@ resource "local_file" "tf_key" {
   content  = tls_private_key.example.private_key_pem
   filename = "group7_key.pem"
 }
+

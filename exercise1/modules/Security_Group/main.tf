@@ -64,6 +64,8 @@ resource "aws_security_group" "private" {
   }
 }
 
+# This is code (below) for checkov requirement 
+
 resource "aws_network_interface" "public_interface" {
   subnet_id = var.public_subnet_id
   security_groups = [aws_security_group.public.id]

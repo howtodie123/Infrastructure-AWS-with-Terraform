@@ -16,7 +16,7 @@ resource "aws_instance" "public" {
   #vpc_security_group_ids = [var.public_security_group]
 
   # associate_public_ip_address = true
-  #depends_on        = [var.public_security_group]
+  # depends_on        = [var.public_security_group]
   # iam instance profile
   iam_instance_profile = var.role_name
   

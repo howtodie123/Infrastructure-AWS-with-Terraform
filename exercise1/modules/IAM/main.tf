@@ -15,7 +15,7 @@ resource "aws_iam_policy" "ec2_policy" {
          "ec2:Describe*",
         ],
         Resource =  [
-          "arn:aws:ec2:us-east-1:654654380717:instance/*" # Chỉ định tất cả các phiên bản EC2 trong tài khoản này
+          "arn:aws:ec2:us-east-1::instance/*" # Chỉ định tất cả các phiên bản EC2 trong tài khoản này
         ]
       },
     #    {

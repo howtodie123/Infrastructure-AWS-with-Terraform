@@ -30,6 +30,9 @@ resource "aws_instance" "public" {
   tags = {
     Name = "Public Instance Group 7"
   }
+  root_block_device {
+  encrypted    = true
+ }
 
   user_data = <<-EOF
     #!/bin/bash
@@ -50,7 +53,7 @@ resource "aws_instance" "public" {
     key_name = aws_key_pair.generated_key.key_name
     
     ebs_optimized = true 
-  monitoring = true
+    monitoring = true
 
   # Disable IMDSv1 and force use of IMDSv2
   metadata_options {
@@ -59,6 +62,10 @@ resource "aws_instance" "public" {
     http_put_response_hop_limit = 1
     instance_metadata_tags      = "enabled"
   }
+  
+  root_block_device {
+  encrypted    = true
+ } 
 
     tags = {
       Name = "Private Instance Group 7"

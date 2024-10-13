@@ -3,7 +3,8 @@ resource "aws_vpc" "main_vpc" {
   enable_dns_support = true
   enable_dns_hostnames = true
   instance_tenancy     = "default"
-
+  
+  
   tags = {
     Name = "VPC group 7"
     Environment = "test"
@@ -60,9 +61,38 @@ resource "aws_default_security_group" "default_security_group" {
   }
 }
 
-# resource "aws_flow_log" "example" {
-#   iam_role_arn    = "arn"
-#   log_destination = "log"
-#   traffic_type    = "ALL"
-#   vpc_id          = aws_vpc.main_vpc.id
-# }
+
+resource "aws_iam_role" "vpc_flow_logs_role" {
+  name = "vpc-flow-logs-role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Principal = {
+          Service = "vpc-flow-logs.amazonaws.com"
+        }
+        Action = "sts:AssumeRole"
+      },
+    ]
+  })
+}
+
+resource "aws_iam_policy_attachment" "vpc_flow_logs_attachment" {
+  name       = "vpc-flow-logs-attachment"
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWS_VPC_FlowLogs"
+  roles      = [aws_iam_role.vpc_flow_logs_role.name]
+}
+
+resource "aws_cloudwatch_log_group" "vpc_flow_logs" {
+  name              = "vpc-flow-logs"
+  retention_in_days = 30  # Thay đổi số ngày lưu giữ log nếu cần
+}
+
+resource "aws_flow_log" "vpc_flow_log" {
+  log_destination = aws_cloudwatch_log_group.vpc_flow_logs.arn
+  vpc_id         = aws_vpc.main_vpc.id
+  traffic_type   = "ALL"  # Có thể là "ACCEPT", "REJECT", hoặc "ALL"
+  iam_role_arn   = aws_iam_role.vpc_flow_logs_role.arn
+}

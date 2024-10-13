@@ -1,6 +1,9 @@
 resource "aws_security_group" "public" {
   vpc_id = var.vpc_id
   description = "Allow SSH access from a specific IP"
+  
+  # Không cho phép lưu lượng truy cập vào hoặc ra
+  revoke_rules_on_delete = true  # Tự động xóa các quy tắc khi nhóm bảo mật bị xóa
 
   # Allow SSH from a specific IP 
   ingress {
@@ -27,6 +30,9 @@ resource "aws_security_group" "public" {
 resource "aws_security_group" "private" {
   vpc_id = var.vpc_id
   description = "Allow connections from Public EC2 instance"
+
+  # Không cho phép lưu lượng truy cập vào hoặc ra
+  revoke_rules_on_delete = true  # Tự động xóa các quy tắc khi nhóm bảo mật bị xóa
 
   ingress {
     description = "Allow SSH from a specific IP"

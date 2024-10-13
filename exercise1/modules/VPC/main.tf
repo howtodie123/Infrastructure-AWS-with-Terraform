@@ -75,3 +75,24 @@ resource "aws_cloudwatch_log_group" "vpc_log_group" {
     Name = "VPC Flow Logs Group"
   }
 }
+
+resource "aws_kms_key" "example" {
+  description = "KMS key for example"
+  policy      = jsonencode(
+  {
+    "Version": "2012-10-17",
+    "Id": "default",
+    "Statement": [
+      {
+        "Sid": "DefaultAllow",
+        "Effect": "Allow",
+        "Principal": {
+          "AWS": "arn:aws:iam::123456789012:root"
+        },
+        "Action": "kms:*",
+        "Resource": "*"
+      }
+    ]
+  }
+  )
+}

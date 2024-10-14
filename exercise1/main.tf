@@ -63,13 +63,13 @@ terraform {
   }
 }
 
-resource "aws_s3_bucket" "example" {
-  bucket     = "Group7-bucket-terraform"
-  tags = {
-    Name        = "Group7 bucket"
-    Environment = "Dev"
-  }
-   lifecycle {
-    prevent_destroy = false  
-  }
-}
+# resource "aws_s3_bucket" "example" {
+#   bucket     = "group7-bucket-terraform"  
+#   tags = {
+#     Name        = "Group7 bucket"
+#     Environment = "Dev"
+#   }
+#    lifecycle {
+#     prevent_destroy = false  
+#   }
+# }

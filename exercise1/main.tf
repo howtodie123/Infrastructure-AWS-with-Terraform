@@ -8,16 +8,16 @@ terraform {
 }
 
 provider "aws" {
-  region = var.region
+  region = "us-east-1"
   access_key = local.access_key
   secret_key = local.secret_key
 }
 
 terraform {
   backend "s3" {
-    bucket =  var.bucket       # name of the S3 bucket
+    bucket =  "group7-terraform-bucket"       # name of the S3 bucket
     #key    = "dev/terraform.tfstate"         # path to the state file inside the bucket
-    region =  var.region                     # region of the S3 bucket
+    region =  "us-east-1"                     # region of the S3 bucket
     encrypt = true                           # enable server-side encryption
   }
 }

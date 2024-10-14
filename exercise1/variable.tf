@@ -1,15 +1,3 @@
-variable "region" {
-  description = "value of the region"
-  type        = string
-  default     = "us-east-1"
-}
-
-variable "bucket" {
-  description = "Name of the S3 bucket"
-  type        = string
-  default     = "group7-bucket-terraform"
-}
-
 variable "vpc_cidr" {
   description = "CIDR block for the VPC"
   type        = string

@@ -1,5 +1,5 @@
 resource "aws_default_security_group" "default_security_group" {
-  vpc_id = aws_vpc.main_vpc.id
+  vpc_id = var.vpc_id
 }
 
 resource "aws_security_group" "public" {

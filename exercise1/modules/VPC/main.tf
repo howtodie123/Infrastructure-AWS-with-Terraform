@@ -65,7 +65,7 @@ resource "aws_kms_key" "cloudwatch_kms_key" {
   
    policy      = <<POLICY
   {
-    "Version": "2024-10-17",
+    "Version": "2012-10-17",
     "Id": "default",
     "Statement": [
       {

@@ -62,14 +62,3 @@ module "security_group" {
   public_subnet_id        = module.VPC.public_subnet_id
   private_subnet_id       = module.VPC.private_subnet_id
 }
-
-# resource "aws_s3_bucket" "example" {
-#   bucket     = "group7-bucket-terraform"  
-#   tags = {
-#     Name        = "Group7 bucket"
-#     Environment = "Dev"
-#   }
-#    lifecycle {
-#     prevent_destroy = false  
-#   }
-# }

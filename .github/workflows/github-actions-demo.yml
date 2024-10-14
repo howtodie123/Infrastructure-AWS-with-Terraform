@@ -40,9 +40,9 @@ jobs:
         working-directory: exercise1
         run: terraform apply -auto-approve
 
-      - name: destroy Terraform changes
-        working-directory: exercise1
-        run: terraform destroy -auto-approve
+      # - name: destroy Terraform changes
+      #   working-directory: exercise1
+      #   run: terraform destroy -auto-approve
 
       - name: Clean up
         working-directory: exercise1

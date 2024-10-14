@@ -1,14 +1,14 @@
 resource "aws_default_security_group" "default_security_group_7" {
   vpc_id = var.vpc_id
   tags = {
-    Name = "Group 7: Default Security Group EC2"
+    Name = "Group 7: Default Security Group VPC"
   }
 }
 
 resource "aws_security_group" "public" {
   vpc_id = var.vpc_id
   description = "Allow SSH access from a specific IP"
-  name = "Group 7: Public Security Group EC2"
+  name = "Group 7: Public Security Group "
 
   # Allow SSH from a specific IP 
   ingress {
@@ -28,7 +28,7 @@ resource "aws_security_group" "public" {
   }
 
   tags = {
-    Name = "Group 7: Public Security Group EC2" 
+    Name = "Group 7: Public Security Group " 
   }
 }
 

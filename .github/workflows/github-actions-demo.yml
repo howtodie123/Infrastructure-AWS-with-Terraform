@@ -27,22 +27,22 @@ jobs:
       - name: Initialize Terraform
         working-directory: exercise1
         run: terraform init
-
-      - name: Plan Terraform changes
-        working-directory: exercise1
-        run: terraform plan -out=tfplan
       
-      - name: Validate Terraform validate
-        working-directory: exercise1
-        run: terraform validate
-        
-      - name: apply Terraform apply
-        working-directory: exercise1
-        run: terraform apply -auto-approve
-
-      # - name: destroy Terraform destroy
+      # - name: Validate Terraform validate
       #   working-directory: exercise1
-      #   run: terraform destroy -auto-approve
+      #   run: terraform validate
+      
+      # - name: Plan Terraform changes
+      #   working-directory: exercise1
+      #   run: terraform plan -out=tfplan
+        
+      # - name: apply Terraform apply
+      #   working-directory: exercise1
+      #   run: terraform apply -auto-approve
+
+      - name: destroy Terraform destroy
+        working-directory: exercise1
+        run: terraform destroy -auto-approve
 
       - name: Clean up
         working-directory: exercise1

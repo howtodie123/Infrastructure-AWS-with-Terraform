@@ -1,9 +1,9 @@
 name: CI Workflow
 
-on:
-  push:
-    branches:
-      - main
+on: []
+  # push:
+  #   branches:
+  #     - main
 
 jobs:
   # Job 1: Checkov Security Scan

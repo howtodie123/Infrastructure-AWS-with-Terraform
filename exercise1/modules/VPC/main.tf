@@ -72,7 +72,7 @@ resource "aws_kms_key" "cloudwatch_kms_key" {
         "Sid": "DefaultAllow",
         "Effect": "Allow",
         "Principal": {
-          "AWS": "arn:aws:iam::654654380717:root"
+          "AWS": "arn:aws:iam::654654278333:root"
         },
         "Action": "kms:*",
         "Resource": "*"

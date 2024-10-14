@@ -53,3 +53,23 @@ module "security_group" {
   public_subnet_id        = module.VPC.public_subnet_id
   private_subnet_id       = module.VPC.private_subnet_id
 }
+
+terraform {
+  backend "s3" {
+    bucket = "Group7-terraform-states"       # Tên S3 bucket để lưu trạng thái
+    key    = "dev/terraform.tfstate"     # Đường dẫn bên trong S3 để lưu file tfstate
+    region = "us-east-1"                 # Khu vực của S3 bucket
+    encrypt = true                        # Mã hóa file trạng thái trong S3
+  }
+}
+
+resource "aws_s3_bucket" "example" {
+  bucket     = "Group7-bucket-terraform"
+  tags = {
+    Name        = "Group7 bucket"
+    Environment = "Dev"
+  }
+   lifecycle {
+    prevent_destroy = false  
+  }
+}

@@ -32,18 +32,18 @@ jobs:
         working-directory: exercise1
         run: terraform validate
 
-      - name: Plan Terraform changes
-        working-directory: exercise1
-        run: terraform plan -out=tfplan
-        
-      - name: apply Terraform apply
-        working-directory: exercise1
-        run: terraform apply -auto-approve
-
-      - name: Clean up
-        working-directory: exercise1
-        run: rm tfplan
-
-      # - name: destroy Terraform destroy
+      # - name: Plan Terraform changes
       #   working-directory: exercise1
-      #   run: terraform destroy -auto-approve
+      #   run: terraform plan -out=tfplan
+        
+      # - name: apply Terraform apply
+      #   working-directory: exercise1
+      #   run: terraform apply -auto-approve
+
+      # - name: Clean up
+      #   working-directory: exercise1
+      #   run: rm tfplan
+
+      - name: destroy Terraform destroy
+        working-directory: exercise1
+        run: terraform destroy -auto-approve

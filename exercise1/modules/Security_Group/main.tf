@@ -1,7 +1,5 @@
 resource "aws_default_security_group" "default_security_group_7" {
   vpc_id = var.vpc_id
-  name = "Group 7: Private Security Group EC2"
-  
   tags = {
     Name = "Group 7: Default Security Group EC2"
   }

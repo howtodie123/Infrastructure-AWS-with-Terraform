@@ -1,14 +1,15 @@
-# resource "aws_default_security_group" "default_security_group" {
-#   vpc_id = var.vpc_id
-# }
+resource "aws_default_security_group" "default_security_group_7" {
+  vpc_id = var.vpc_id
+  description = "Group 7: Default Security Group EC2"
+  tags = {
+    Name = "Group 7: Default Security Group EC2"
+  }
+}
 
 resource "aws_security_group" "public" {
   vpc_id = var.vpc_id
   description = "Allow SSH access from a specific IP"
   
-  # Không cho phép lưu lượng truy cập vào hoặc ra
-  #revoke_rules_on_delete = true  # Tự động xóa các quy tắc khi nhóm bảo mật bị xóa
-
   # Allow SSH from a specific IP 
   ingress {
     description = "Allow SSH from a specific IP"
@@ -34,9 +35,6 @@ resource "aws_security_group" "public" {
 resource "aws_security_group" "private" {
   vpc_id = var.vpc_id
   description = "Allow connections from Public EC2 instance"
-
-  # Không cho phép lưu lượng truy cập vào hoặc ra
-  #revoke_rules_on_delete = true  # Tự động xóa các quy tắc khi nhóm bảo mật bị xóa
 
   ingress {
     description = "Allow SSH from a specific IP"
@@ -66,17 +64,4 @@ resource "aws_security_group" "private" {
   tags = {
     Name = "Group 7: Private Security Group EC2"
   }
-}
-
-# This is code (below) for checkov requirement 
-
-resource "aws_network_interface" "public_interface" {
-  subnet_id = var.public_subnet_id
-  security_groups = [aws_security_group.public.id]
-
-}
-
-resource "aws_network_interface" "private_interface" {
-  subnet_id = var.private_subnet_id
-  security_groups = [aws_security_group.private.id]
 }

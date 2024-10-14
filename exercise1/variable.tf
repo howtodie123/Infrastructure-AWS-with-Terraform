@@ -40,16 +40,6 @@ variable "ami_id" {
   default     = "ami-0866a3c8686eaeeba"
 }
 
-# variable "ARN_instance" {
-#   description = "Name of the ARN instance"
-#   type        = string
-# }
-
-# variable "ARN_user" {
-#   description = "Name of the ARN user"
-#   type        = string
-# }
-
 variable "allowed_ip" {
   description = "Allowed IP address"
   type        = string

@@ -1,13 +1,13 @@
 variable "ami" {
     type        = string
     description = "The ID of the AMI to use for the instance"
-    default     = "ami-0866a3c8686eaeeba"
+    #default     = "ami-0866a3c8686eaeeba"
 }
 
 variable "instance_type" {
     type        = string
     description = "The type of instance to start"
-    default     = "t2.micro"
+    #default     = "t2.micro"
 }
 
 variable "public_subnet_id" {
@@ -34,9 +34,4 @@ variable "private_security_group" {
 variable "key_name" {
     type        = string
     description = "The name of the key pair to use for the instance"
-}
-
-variable "role_name" {
-    type        = string
-    description = "The name of the IAM role"
 }

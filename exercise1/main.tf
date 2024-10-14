@@ -56,7 +56,7 @@ module "security_group" {
 
 terraform {
   backend "s3" {
-    bucket = "Group7-terraform-states"       # Tên S3 bucket để lưu trạng thái
+    bucket = "group7-bucket-terraform"       # Tên S3 bucket để lưu trạng thái
     key    = "dev/terraform.tfstate"     # Đường dẫn bên trong S3 để lưu file tfstate
     region = "us-east-1"                 # Khu vực của S3 bucket
     encrypt = true                        # Mã hóa file trạng thái trong S3

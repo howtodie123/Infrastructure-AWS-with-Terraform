@@ -8,9 +8,18 @@ terraform {
 }
 
 provider "aws" {
-  region = "us-east-1" 
+  region = var.region
   access_key = local.access_key
   secret_key = local.secret_key
+}
+
+terraform {
+  backend "s3" {
+    bucket =  var.bucket       # name of the S3 bucket
+    #key    = "dev/terraform.tfstate"         # path to the state file inside the bucket
+    region =  var.region                     # region of the S3 bucket
+    encrypt = true                           # enable server-side encryption
+  }
 }
 
 module "VPC" {
@@ -52,15 +61,6 @@ module "security_group" {
   allowed_ip              = var.allowed_ip # specify your ip address
   public_subnet_id        = module.VPC.public_subnet_id
   private_subnet_id       = module.VPC.private_subnet_id
-}
-
-terraform {
-  backend "s3" {
-    bucket = "group7-bucket-terraform"       # Tên S3 bucket để lưu trạng thái
-    key    = "dev/terraform.tfstate"     # Đường dẫn bên trong S3 để lưu file tfstate
-    region = "us-east-1"                 # Khu vực của S3 bucket
-    encrypt = true                        # Mã hóa file trạng thái trong S3
-  }
 }
 
 # resource "aws_s3_bucket" "example" {

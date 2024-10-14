@@ -1,6 +1,6 @@
-resource "aws_default_security_group" "default_security_group" {
-  vpc_id = var.vpc_id
-}
+# resource "aws_default_security_group" "default_security_group" {
+#   vpc_id = var.vpc_id
+# }
 
 resource "aws_security_group" "public" {
   vpc_id = var.vpc_id

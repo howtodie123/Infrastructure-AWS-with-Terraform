@@ -45,9 +45,9 @@ resource "aws_subnet" "private_subnet" {
 
 # This is code (below) for checkov requirement 
 
-# resource "aws_default_security_group" "default_security_group" {
-#   vpc_id = aws_vpc.main_vpc.id
-# }
+resource "aws_default_security_group" "default_security_group" {
+  vpc_id = aws_vpc.main_vpc.id
+}
 
 resource "aws_flow_log" "vpc_flow_log" {
   vpc_id = aws_vpc.main_vpc.id

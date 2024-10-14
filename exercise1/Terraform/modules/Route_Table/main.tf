@@ -41,7 +41,7 @@ resource "aws_route_table" "private_route_table" {
     }
 }
 
-# # Route for NAT Gateway in Private Route Table / this can add into aws_route_table resource
+# Route for NAT Gateway in Private Route Table / this can add into aws_route_table resource
 # resource "aws_route" "private_nat_gateway" {
 #     route_table_id = aws_route_table.private_route_table.id  # ID of the private route table
 #     destination_cidr_block = "0.0.0.0/0"  # Destination CIDR block for NAT gateway

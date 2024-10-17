@@ -42,7 +42,7 @@ resource "aws_instance" "public" {
     echo "Private key has been saved to /home/ec2-user/.ssh/key.pem" >> /var/log/myapp.log
   EOF
 
-  #checkov:skip=CKV_AWS_41:don't need IAM role for the EC2 instance
+  #checkov:skip=CKV2_AWS_41:don't need IAM role for the EC2 instance
 }
 
 
@@ -77,7 +77,7 @@ resource "aws_instance" "public" {
     # associate_public_ip_address = false # no ip address public
     depends_on = [ var.private_subnet_id]
 
-    #checkov:skip=CKV_AWS_41:don't need IAM role for the EC2 instance
+    #checkov:skip=CKV2_AWS_41:don't need IAM role for the EC2 instance
   }
 
 resource "local_file" "tf_key" {

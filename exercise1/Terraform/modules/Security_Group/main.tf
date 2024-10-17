@@ -30,8 +30,8 @@ resource "aws_security_group" "public" {
   tags = {
     Name = "Group 7: Public Security Group " 
   }
-  #checkov:skip=CKV_AWS_24:SG will be used for the EC2 instances
-  #checkov:skip=CKV_AWS_5:SG will be used for the EC2 instances
+  #checkov:skip=CKV2_AWS_24:SG will be used for the EC2 instances
+  #checkov:skip=CKV2_AWS_5:SG will be used for the EC2 instances
 }
 
 resource "aws_security_group" "private" {
@@ -67,5 +67,5 @@ resource "aws_security_group" "private" {
   tags = {
     Name = "Group 7: Private Security Group EC2"
   }
-  #checkov:skip=CKV_AWS_5:SG will be used for the EC2 instances
+  #checkov:skip=CKV2_AWS_5: SG will be used for the EC2 instances
 }

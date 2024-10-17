@@ -9,6 +9,8 @@ resource "aws_vpc" "main_vpc" {
     Name = "VPC group 7"
     Environment = "test"
   }
+  #checkov:skip=CKV_AWS_11:don't need VPC Flow Log enabled
+  #checkov:skip=CKV_AWS_12:have restricts all traffic in security group default
 }
 
 resource "aws_internet_gateway" "internet_gateway" {

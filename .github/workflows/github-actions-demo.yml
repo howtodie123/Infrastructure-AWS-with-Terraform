@@ -25,7 +25,6 @@ jobs:
         with:
           directory: exercise1/Terraform
           framework: terraform
-  
   # Job 2: Terraform apply
   terraform-apply:
     runs-on: ubuntu-22.04

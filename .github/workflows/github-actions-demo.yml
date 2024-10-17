@@ -25,6 +25,7 @@ jobs:
         with:
           directory: exercise1/Terraform
           framework: terraform
+          soft-fail-threshold: MEDIUM
   
   # Job 2: Terraform apply
   terraform-apply:

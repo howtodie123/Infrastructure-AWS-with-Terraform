@@ -25,7 +25,7 @@ jobs:
         with:
           directory: exercise1/Terraform
           framework: terraform
-          soft-fail-threshold: HIGH
+          soft-fail-threshold: Critical
   
   # Job 2: Terraform apply
   terraform-apply:

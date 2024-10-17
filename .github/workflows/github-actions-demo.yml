@@ -6,11 +6,13 @@ on:
       - main
     paths:
       - '.github/workflows/**'
-# Job 1: Checkov Security Scan
+
+jobs:
+  # Job 1: Checkov Security Scan
   checkov:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       
       - name: Set up Python 3.8
         uses: actions/setup-python@v4
@@ -21,14 +23,15 @@ on:
         id: checkov
         uses: bridgecrewio/checkov-action@master
         with:
-          directory: exercise1/Terraform  # Specify the directory where your code is located
+          directory: exercise1/Terraform
           framework: terraform
           soft-fail-threshold: MEDIUM
-# Job 2: Terraform apply
-jobs:
-  terraform apply:
+  
+  # Job 2: Terraform apply
+  terraform-apply:
     runs-on: ubuntu-22.04
     environment: AWS
+    needs: checkov
     steps:
       - uses: actions/checkout@v3
       
@@ -48,7 +51,7 @@ jobs:
         working-directory: exercise1/Terraform
         run: terraform init
       
-      - name: Validate Terraform validate
+      - name: Validate Terraform
         working-directory: exercise1/Terraform
         run: terraform validate
 
@@ -56,18 +59,19 @@ jobs:
         working-directory: exercise1/Terraform
         run: terraform plan -out=tfplan
         
-      - name: apply Terraform apply
+      - name: Apply Terraform
         working-directory: exercise1/Terraform
         run: terraform apply -auto-approve
 
       - name: Clean up
         working-directory: exercise1/Terraform
         run: rm tfplan
-# Job 3: Terraform destroy    
-jobs:
-  terraform destroy:
+  
+  # Job 3: Terraform destroy    
+  terraform-destroy:
     runs-on: ubuntu-22.04
     environment: AWS
+    needs: terraform-apply
     steps:
       - uses: actions/checkout@v3
       
@@ -87,6 +91,6 @@ jobs:
         working-directory: exercise1/Terraform
         run: terraform init
 
-      - name: destroy Terraform destroy
+      - name: Destroy Terraform resources
         working-directory: exercise1/Terraform
         run: terraform destroy -auto-approve

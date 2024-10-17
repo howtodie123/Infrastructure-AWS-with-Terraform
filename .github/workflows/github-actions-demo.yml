@@ -63,7 +63,6 @@ jobs:
       - name: Clean up
         working-directory: exercise1/Terraform
         run: rm tfplan
-
 # Job 3: Terraform destroy    
 jobs:
   terraform destroy:

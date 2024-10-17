@@ -30,6 +30,7 @@ resource "aws_subnet" "public_subnet" {
     Name = "Public Subnet group 7"
     Environment = "test"
   }
+  #checkov:skip=CKV_AWS_130:Allow automatic public IP assignment
 }
 
 resource "aws_subnet" "private_subnet" {

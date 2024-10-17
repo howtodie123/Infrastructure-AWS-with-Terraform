@@ -30,6 +30,7 @@ resource "aws_security_group" "public" {
   tags = {
     Name = "Group 7: Public Security Group " 
   }
+  #checkov:skip=CKV_AWS_24:Custom SG will be used for the EC2 instances
 }
 
 resource "aws_security_group" "private" {
